@@ -20,14 +20,29 @@
 
 
 ## Таблица адресов
-| Device  | Interface | IP Address   | Subnet Mask   | Default Gateway |
-|---------|-----------|--------------|---------------|-----------------|
-
+| Device  | Interface | IP Address   | Subnet Mask     | Default Gateway |
+|---------|-----------|--------------|-----------------|-----------------|
+| R1      | e0/0      | 10.0.0.1     | 255.255.255.252 |                 |
+|         | e0/1      |              |                 |                 |
+|         | e0/1.100  |              |                 |                 |
+|         | e0/1.200  |              |                 |                 |
+|         | e0/1.1000 |              |                 |                 |
+| R2      | e0/0      | 10.0.0.2     | 255.255.255.252 |                 |
+|         | e0/1      |              |                 |                 |
+| S1      | VLAN 200  |              |                 |                 |
+| S2      | VLAN 1    |              |                 |                 |
+| PC-A    |           | DHCP         | DHCP            | DHCP            |
+| PC-B    |           | DHCP         | DHCP            | DHCP            |
  
 
 ## Таблица VLAN
 | VLAN |    Name      | Назначенный интерфейс |
 |------|--------------|-----------------------|
+| 1    |              | S2 e0/3               |
+| 100  | Clients      | S1 e0/3               |
+| 200  | Management   | S1 VLAN 200           |
+| 999  | Parking_Lot  | S1 e0/0,e0/2          |
+| 1000 | Native       |                       |
 
 
 ### [Файлы конфигураций устройст и сама работа выполненная в EVE-NG ](https://gl.niknav.ru/otus/network_engineer_professional/-/tree/main/labs/lab03.1/configs)

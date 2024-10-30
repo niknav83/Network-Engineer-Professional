@@ -22,16 +22,20 @@
 
 
 ## Таблица адресов
-| Device  | Interface | IP Address   | Subnet Mask   | Default Gateway |
-|---------|-----------|--------------|---------------|-----------------|
+| Device  | Interface | IP Address Subnet Mask | Default Gateway |
+|---------|-----------|------------------------|-----------------|
+| R1      | e0/0      | 2001:db8:acad:2::1 /64 |                 | 
+|         |           | fe80::1                |                 | 
+|         | e0/1      | 2001:db8:acad:1::1/64  |                 | 
+|         |           | fe80::1                |                 | 
+| R2      | e0/0      | 2001:db8:acad:2::2/64  |                 | 
+|         |           | fe80::2                |                 | 
+|         | e0/1      | 2001:db8:acad:3::1 /64 |                 | 
+|         |           | fe80::1                |                 | 
+| PC-A    |           | DHCP                   |                 | 
+| PC-B    |           | DHCP                   |                 | 
 
  
-
-## Таблица VLAN
-| VLAN |    Name      | Назначенный интерфейс |
-|------|--------------|-----------------------|
-
-
 ### [Файлы конфигураций устройст и сама работа выполненная в EVE-NG ](https://gl.niknav.ru/otus/network_engineer_professional/-/tree/main/labs/lab03.1/configs)
 В данной работе применялись следующие образы:
  - L3-ADVENTERPRISEK9-M-15.4-2T.bin
