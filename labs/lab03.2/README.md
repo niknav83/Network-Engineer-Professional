@@ -36,11 +36,8 @@
 | PC-B    |           | DHCP                   |                 | 
 
  
-<<<<<<< Updated upstream
 ### [Файлы конфигураций устройст и сама работа выполненная в EVE-NG ](https://github.com/niknav83/Network-Engineer-Professional/tree/main/labs/lab03.2/configs)
-=======
-### [Файлы конфигураций устройст и сама работа выполненная в EVE-NG ](https://gl.niknav.ru/otus/network_engineer_professional/-/tree/main/labs/lab03.2/configs)
->>>>>>> Stashed changes
+
 В данной работе применялись следующие образы:
  - L3-ADVENTERPRISEK9-M-15.4-2T.bin
  - L2-ADVENTERPRISEK9-M-15.2-20150703.bin
