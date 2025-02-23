@@ -38,7 +38,7 @@
 |         | e0/2      | 10.5.20.10      | 255.255.255.252 |                 |
 |         | e0/3      | 141.193.213.237 | 255.255.255.252 |                 |
 
-### [Файлы конфигураций устройст и сама работа выполненная в EVE-NG ](https://gl.niknav.ru/otus/network_engineer_professional/-/tree/main/labs/lab07/configs)
+### [Файлы конфигураций устройст и сама работа выполненная в EVE-NG ](https://github.com/niknav83/Network-Engineer-Professional/tree/main/labs/lab07/configs)
 В данной работе применялись следующие образы:
  - L3-ADVENTERPRISEK9-M-15.4-2T.bin
  - L2-ADVENTERPRISEK9-M-15.2-20150703.bin
