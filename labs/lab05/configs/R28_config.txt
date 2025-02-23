@@ -1,0 +1,210 @@
+
+!
+! Last configuration change at 21:42:11 +04 Sun Feb 23 2025
+version 15.2
+service timestamps debug datetime msec
+service timestamps log datetime msec
+service password-encryption
+!
+hostname R28
+!
+boot-start-marker
+boot-end-marker
+!
+!
+enable secret 5 $1$UR3m$ethAOwLZal74HdPj7lbdZ/
+!
+no aaa new-model
+clock timezone +04 4 0
+mmi polling-interval 60
+no mmi auto-configure
+no mmi pvc
+mmi snmp-timeout 180
+!
+!
+!
+!
+
+
+!
+!
+!
+!
+no ip domain lookup
+ip cef
+no ipv6 cef
+!
+multilink bundle-name authenticated
+!
+!
+!
+!
+!
+!
+!
+!
+!
+redundancy
+!
+!
+!
+track 123 ip sla 1 reachability
+ delay down 10 up 5
+!
+track 124 ip sla 2 reachability
+ delay down 10 up 5
+! 
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface Loopback0
+ no shutdown
+ ip address 192.168.8.28 255.255.255.255
+!
+interface Ethernet0/0
+ no shutdown
+ description $ISP1$
+ ip address 141.193.213.246 255.255.255.252
+ ip nat outside
+ ip virtual-reassembly in
+!
+interface Ethernet0/1
+ no shutdown
+ description $ISP2$
+ ip address 141.193.213.250 255.255.255.252
+ ip nat outside
+ ip virtual-reassembly in
+!
+interface Ethernet0/2
+ no shutdown
+ description $LAN$
+ ip address 192.168.8.1 255.255.255.252
+ ip nat inside
+ ip nat enable
+ ip virtual-reassembly in
+ ip policy route-map tracking
+!
+interface Ethernet0/3
+ no shutdown
+ no ip address
+ shutdown
+!
+interface Ethernet1/0
+ no shutdown
+ no ip address
+ shutdown
+!
+interface Ethernet1/1
+ no shutdown
+ no ip address
+ shutdown
+!
+interface Ethernet1/2
+ no shutdown
+ no ip address
+ shutdown
+!
+interface Ethernet1/3
+ no shutdown
+ no ip address
+ shutdown
+!
+ip forward-protocol nd
+!
+!
+no ip http server
+no ip http secure-server
+ip nat inside source route-map 111 interface Ethernet0/0 overload
+ip nat inside source route-map 112 interface Ethernet0/1 overload
+ip route 0.0.0.0 0.0.0.0 141.193.213.245 10 track 123
+ip route 0.0.0.0 0.0.0.0 141.193.213.249 20 track 124
+ip route 192.168.10.0 255.255.255.0 192.168.8.2
+ip route 192.168.20.0 255.255.255.0 192.168.8.2
+!
+ip sla auto discovery
+ip sla 1
+ icmp-echo 141.193.213.245 source-interface Ethernet0/0
+ request-data-size 32
+ frequency 5
+ history hours-of-statistics-kept 24
+ip sla schedule 1 life forever start-time now
+ip sla 2
+ icmp-echo 141.193.213.249 source-interface Ethernet0/1
+ request-data-size 32
+ frequency 5
+ history hours-of-statistics-kept 24
+ip sla schedule 2 life forever start-time now
+access-list 115 permit ip 192.168.10.0 0.0.0.255 any
+access-list 116 permit ip 192.168.20.0 0.0.0.255 any
+!
+route-map tracking permit 10
+ match ip address 115
+ set ip next-hop verify-availability 141.193.213.245 10 track 123
+ set ip next-hop verify-availability 141.193.213.249 20 track 124
+!
+route-map tracking permit 20
+ match ip address 116
+ set ip next-hop verify-availability 141.193.213.249 10 track 124
+ set ip next-hop verify-availability 141.193.213.245 20 track 123
+!
+route-map 111 permit 10
+ match ip address 115 116
+ match interface Ethernet0/0
+ set ip next-hop 141.193.213.245
+!
+route-map 112 permit 20
+ match ip address 116 115
+ match interface Ethernet0/1
+ set ip next-hop 141.193.213.249
+!
+!
+!
+control-plane
+!
+!
+!
+!
+!
+!
+banner motd  Authorized Users Only! 
+!
+line con 0
+ password 7 030752180500
+ logging synchronous
+ login
+line aux 0
+line vty 0 4
+ password 7 14141B180F0B
+ login
+ transport input all
+!
+event manager applet TR1DOWN
+ event track 123 state down
+ action 10 wait 10
+ action 15 cli command "enable"
+ action 20 cli command "clear ip nat translation *"
+event manager applet TR1UP
+ event track 123 state up
+ action 10 wait 10
+ action 15 cli command "enable"
+ action 20 cli command "clear ip nat translation *"
+event manager applet TR2DOWN
+ event track 124 state down
+ action 10 wait 10
+ action 15 cli command "enable"
+ action 20 cli command "clear ip nat translation *"
+event manager applet TR2UP
+ event track 124 state up
+ action 10 wait 10
+ action 15 cli command "enable"
+ action 20 cli command "clear ip nat translation *"
+!
+end
