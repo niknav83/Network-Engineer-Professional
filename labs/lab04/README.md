@@ -189,7 +189,7 @@
 | 999   | ParkingLot   | SW29:  e0/3,e1/0,e1/1,e1/2,e1/3 |
 
 
-### [Файлы конфигураций устройст и сама работа выполненная в EVE-NG ](https://gl.niknav.ru/otus/network_engineer_professional/-/tree/main/labs/lab04/configs)
+### [Файлы конфигураций устройст и сама работа выполненная в EVE-NG ](https://github.com/niknav83/Network-Engineer-Professional/tree/main/labs/lab04/configs)
 В данной работе применялись следующие образы:
  - L3-ADVENTERPRISEK9-M-15.4-2T.bin
  - L2-ADVENTERPRISEK9-M-15.2-20150703.bin
