@@ -1,18 +1,18 @@
 
 !
-! Last configuration change at 00:28:44 +04 Mon Feb 24 2025
+! Last configuration change at 00:38:09 +04 Mon Feb 24 2025
 version 15.2
 service timestamps debug datetime msec
 service timestamps log datetime msec
 service password-encryption
 !
-hostname R23
+hostname R24
 !
 boot-start-marker
 boot-end-marker
 !
 !
-enable secret 5 $1$sKuM$qI90pM6iHDVK4JO38dUeq1
+enable secret 5 $1$Eufu$ahSeS6PtrT3CbuRe4OFmd/
 !
 no aaa new-model
 clock timezone +04 4 0
@@ -61,27 +61,26 @@ redundancy
 !
 interface Loopback0
  no shutdown
- ip address 10.5.20.23 255.255.255.255
+ ip address 10.5.20.24 255.255.255.255
  ip router isis Underlay
 !
 interface Ethernet0/0
  no shutdown
- ip address 207.231.242.2 255.255.255.252
+ ip address 62.192.160.254 255.255.255.252
 !
 interface Ethernet0/1
  no shutdown
- ip address 10.5.20.1 255.255.255.252
+ ip address 10.5.20.13 255.255.255.252
  ip router isis Underlay
 !
 interface Ethernet0/2
  no shutdown
- ip address 10.5.20.5 255.255.255.252
+ ip address 10.5.20.6 255.255.255.252
  ip router isis Underlay
 !
 interface Ethernet0/3
  no shutdown
- no ip address
- shutdown
+ ip address 141.193.213.241 255.255.255.252
 !
 interface Ethernet1/0
  no shutdown
@@ -104,7 +103,8 @@ interface Ethernet1/3
  shutdown
 !
 router isis Underlay
- net 49.2222.0010.0005.2023.00
+ net 49.0024.0010.0005.2024.00
+ is-type level-2-only
  metric-style wide
  log-adjacency-changes
  passive-interface default
@@ -131,12 +131,12 @@ control-plane
 banner motd  Authorized Users Only! 
 !
 line con 0
- password 7 094F471A1A0A
+ password 7 13061E010803
  logging synchronous
  login
 line aux 0
 line vty 0 4
- password 7 121A0C041104
+ password 7 110A1016141D
  login
  transport input all
 !
